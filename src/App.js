@@ -15,35 +15,35 @@ function App() {
   const [filmId, setFilmId] = useState('');
   const [movie, setMovie] = useState('');
   const [favourites, setFavourites] = useState([]);
+
   const searchUrl = 'v2.1/films/search-by-keyword?keyword=';
   const filterUrl = 'v2.1/films/search-by-filters?genre=';
   const aboutFilm = 'v2.2/films/';
+
   const favor = 'favor';
+  let j = 0;
 
   const saveToLocalStorage = (items) => {
     localStorage.setItem('favourites', JSON.stringify(items));
   };
 
   useEffect(() => {
-    if (filmId) {
-      const url = aboutFilm + filmId;
-      requestData(url);
-    } else if (page) {
-      requestData(`${page}`);
-    } else if (link) {
+    if (filmId) requestData(aboutFilm + filmId);
+    else if (page) requestData(`${page}`);
+    else if (link) {
       if (link === 'main') requestData();
-      else {
-        const url = filterUrl + link;
-        requestData(url);
-      }
-    } else if (searchValue) {
-      const url = searchUrl + searchValue;
-      requestData(url);
-    } else requestData();
+      else requestData(filterUrl + link);
+    } else if (searchValue) requestData(searchUrl + searchValue);
+    else requestData();
     setLink('');
     setPage('');
     setFilmId('');
   }, [index, movie]);
+
+  // useEffect(() => {
+  //   const uniq = [...new Set(favourites)];
+  //   setFavourites(uniq);
+  // }, [j]);
 
   useEffect(() => {
     const movieFavourites = JSON.parse(localStorage.getItem('favourites'));
@@ -73,6 +73,7 @@ function App() {
     const newFavouriteList = [...favourites, movie];
     setFavourites(newFavouriteList);
     saveToLocalStorage(newFavouriteList);
+    j++;
   };
   const removeFavouriteMovie = (movie) => {
     const newFavouriteList = favourites.filter(

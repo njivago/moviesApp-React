@@ -78,7 +78,6 @@ const Film = (film) => {
       return RATE_CLASS + 'red';
     }
   };
-  console.log(film);
   return (
     <div className="movie">
       <Link to="/moviesApp-React/aboutFilm" onClick={event}>
