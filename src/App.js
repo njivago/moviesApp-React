@@ -11,10 +11,12 @@ function App() {
   const [page, setPage] = useState('');
   const searchUrl = 'v2.1/films/search-by-keyword?keyword=';
   const filterUrl = 'v2.1/films/search-by-filters?genre=';
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (page) requestData(page);
-    else if (link) {
+    if (page) {
+      requestData(`${page}`);
+    } else if (link) {
       if (link === 'main') requestData();
       else {
         const url = filterUrl + link;
@@ -24,7 +26,9 @@ function App() {
       const url = searchUrl + searchValue;
       requestData(url);
     } else requestData();
-  }, [searchValue, link, page]);
+    setLink('');
+    setPage('');
+  }, [index]);
 
   async function requestData(url) {
     if (url === undefined)
@@ -43,11 +47,26 @@ function App() {
 
   return (
     <>
-      <SearchFilm searchValue={searchValue} setSearchValue={setSearchValue} />
+      <SearchFilm
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        setIndex={setIndex}
+        index={index}
+      />
       <div className="container_main">
-        <Filters link={link} setLink={setLink} />
+        <Filters
+          link={link}
+          setLink={setLink}
+          setIndex={setIndex}
+          index={index}
+        />
         <div className="film-container">
-          <Pagination page={page} setPage={setPage} />
+          <Pagination
+            page={page}
+            setPage={setPage}
+            setIndex={setIndex}
+            index={index}
+          />
           <div className="movies">
             {movies.map((movie) => {
               return <Film film={movie} />;
