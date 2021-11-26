@@ -12,7 +12,7 @@ const Film = (film) => {
   };
 
   return (
-    <div className="movie">
+    <div className="movie" data-id={film.film.filmId}>
       <div className="movie__cover-inner">
         <img
           src={film.film.posterUrlPreview}

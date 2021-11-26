@@ -1,7 +1,7 @@
 import Film from './components/Film';
 import { useState, useEffect } from 'react';
 import Filters from './components/Filters';
-import Header from './components/Header';
+import SearchFilm from './components/SearchFilm';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -32,7 +32,7 @@ function App() {
 
   return (
     <>
-      <Header searchValue={searchValue} setSearchValue={setSearchValue} />
+      <SearchFilm searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className="container_main">
         <Filters />
         <div className="film-container">
