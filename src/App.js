@@ -2,22 +2,33 @@ import Film from './components/Film';
 import { useState, useEffect } from 'react';
 import Filters from './components/Filters';
 import SearchFilm from './components/SearchFilm';
+import Pagination from './components/Pagination';
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const [link, setLink] = useState('');
+  const [page, setPage] = useState('');
   const searchUrl = 'v2.1/films/search-by-keyword?keyword=';
+  const filterUrl = 'v2.1/films/search-by-filters?genre=';
 
   useEffect(() => {
-    if (searchValue) {
+    if (page) requestData(page);
+    else if (link) {
+      if (link === 'main') requestData();
+      else {
+        const url = filterUrl + link;
+        requestData(url);
+      }
+    } else if (searchValue) {
       const url = searchUrl + searchValue;
       requestData(url);
     } else requestData();
-  }, [searchValue]);
+  }, [searchValue, link, page]);
 
   async function requestData(url) {
     if (url === undefined)
-      url = 'v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1';
+      url = 'v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=';
     const res = await fetch(`https://kinopoiskapiunofficial.tech/api/${url}`, {
       headers: {
         'Content-Type': 'application/json',
@@ -34,8 +45,9 @@ function App() {
     <>
       <SearchFilm searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className="container_main">
-        <Filters />
+        <Filters link={link} setLink={setLink} />
         <div className="film-container">
+          <Pagination page={page} setPage={setPage} />
           <div className="movies">
             {movies.map((movie) => {
               return <Film film={movie} />;
