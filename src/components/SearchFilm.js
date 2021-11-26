@@ -1,10 +1,12 @@
+import { Link } from 'react-router-dom';
+
 const SearchFilm = (props) => {
   return (
     <header className="container">
       <div className="header__content">
-        <a href="index.html" className="header__logo">
+        <Link to="/moviesApp-React" className="header__logo">
           Movies App
-        </a>
+        </Link>
         <input
           onChange={(e) => {
             props.setSearchValue(e.target.value);

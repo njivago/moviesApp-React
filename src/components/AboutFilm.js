@@ -1,19 +1,18 @@
 import Film from './Film';
 
 const AboutFilm = (movie) => {
-  const film = movie.movie;
   return (
-    <div class="container__info">
-      <Film film={movie} />
-      <div class="description">
-        <h3 class="slogan">{film.slogan}</h3>
+    <div className="container__info">
+      <Film film={movie.movie} />
+      <div className="description">
+        <h3 className="slogan">{movie.movie.slogan}</h3>
         <p>
-          {film.description} <br /> {film.shortDescription}
+          {movie.movie.description} <br /> {movie.movie.shortDescription}
         </p>
-        <div class="desc">{film.editorAnnotation}</div>
-        <div class="propert">
-          <h4>Year: {film.year}</h4>
-          <h4>Film lenght: {film.filmLenght} min</h4>
+        <div className="desc">{movie.movie.editorAnnotation}</div>
+        <div classname="propert">
+          <h4>Year: {movie.movie.year}</h4>
+          <h4>Film lenght: {movie.movie.filmLength} min</h4>
         </div>
       </div>
     </div>

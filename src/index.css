@@ -73,7 +73,10 @@ body {
   height: 100%;
   z-index: 1;
 }
-
+.title__en {
+  font-size: 20px;
+  color: #ffd80e;
+}
 .movie__cover--darkened:hover {
   background-color: grey;
   cursor: pointer;
@@ -187,4 +190,41 @@ body {
 .active {
   font-weight: bold;
   color: #ffd80e;
+}
+.container__info {
+  margin: 40px auto;
+  display: flex;
+  background-color: #34323f;
+  padding: 40px;
+  border-radius: 50px;
+  width: fit-content;
+  transition: box-shadow 0.2s ease;
+}
+.container__info:hover {
+  box-shadow: 0px 0px 27px 10px rgba(112, 112, 112, 0.2);
+}
+.description {
+  color: white;
+  padding: 50px;
+  width: 34vw;
+  font-size: 20px;
+}
+.description p {
+  margin-bottom: 50px;
+}
+.slogan {
+  color: #ffd80e;
+  margin-bottom: 15px;
+}
+.desc {
+  font-size: 16px;
+  color: wheat;
+  margin-bottom: 20px;
+}
+.propert {
+  color: #ffd80e;
+  font-size: 20px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
 }

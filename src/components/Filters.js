@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Filters = (props) => {
   const filters = document.querySelectorAll('.sidebar__link');
@@ -23,8 +24,8 @@ const Filters = (props) => {
     <ul className="sidebar">
       <span id="sidebar__link_h">Genres of films:</span>
       <li id="sidebar__link ">
-        <a
-          href="#"
+        <Link
+          to="/moviesApp-React"
           className="sidebar__link top active"
           data-link="v2.2/films/top?type=TOP_100_POPULAR_FILMS"
           onClick={(e) => {
@@ -36,13 +37,13 @@ const Filters = (props) => {
           }}
         >
           Top-100
-        </a>
+        </Link>
       </li>
       {genres.map((genre) => {
         return (
           <li id="sidebar__link">
-            <a
-              href="#"
+            <Link
+              to="/moviesApp-React"
               className="sidebar__link"
               data-link={genre.link}
               onClick={(e) => {
@@ -54,7 +55,7 @@ const Filters = (props) => {
               }}
             >
               {genre.genre}
-            </a>
+            </Link>
           </li>
         );
       })}
