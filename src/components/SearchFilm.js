@@ -7,6 +7,9 @@ const SearchFilm = (props) => {
         <Link to="/moviesApp-React" className="header__logo">
           Movies App
         </Link>
+        <Link to="/favourites" className="sidebar__link">
+          Favourites
+        </Link>
         <input
           onChange={(e) => {
             props.setSearchValue(e.target.value);

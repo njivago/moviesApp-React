@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Film from './Film';
 
 const AboutFilm = (movie) => {
@@ -13,6 +14,13 @@ const AboutFilm = (movie) => {
         <div classname="propert">
           <h4>Year: {movie.movie.year}</h4>
           <h4>Film lenght: {movie.movie.filmLength} min</h4>
+        </div>
+        <div className="button__holder">
+          <button className="back__button">
+            <Link to="/moviesApp-React" className="back__button_a">
+              Back
+            </Link>
+          </button>
         </div>
       </div>
     </div>

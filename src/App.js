@@ -14,9 +14,15 @@ function App() {
   const [index, setIndex] = useState(0);
   const [filmId, setFilmId] = useState('');
   const [movie, setMovie] = useState('');
+  const [favourites, setFavourites] = useState([]);
   const searchUrl = 'v2.1/films/search-by-keyword?keyword=';
   const filterUrl = 'v2.1/films/search-by-filters?genre=';
   const aboutFilm = 'v2.2/films/';
+  const favor = 'favor';
+
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem('favourites', JSON.stringify(items));
+  };
 
   useEffect(() => {
     if (filmId) {
@@ -39,6 +45,11 @@ function App() {
     setFilmId('');
   }, [index, movie]);
 
+  useEffect(() => {
+    const movieFavourites = JSON.parse(localStorage.getItem('favourites'));
+    setFavourites(movieFavourites);
+  }, []);
+
   function requestData(url) {
     if (url === undefined)
       url = 'v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=';
@@ -53,13 +64,23 @@ function App() {
       .then((data) => {
         if (data.films) {
           setMovies(data.films);
-          console.log(movies);
         } else {
           setMovie(data);
-          console.log(movie);
         }
       });
   }
+  const addFavouritesMovie = (movie) => {
+    const newFavouriteList = [...favourites, movie];
+    setFavourites(newFavouriteList);
+    saveToLocalStorage(newFavouriteList);
+  };
+  const removeFavouriteMovie = (movie) => {
+    const newFavouriteList = favourites.filter(
+      (favourite) => favourite.filmId !== movie.filmId
+    );
+    setFavourites(newFavouriteList);
+    saveToLocalStorage(newFavouriteList);
+  };
 
   return (
     <>
@@ -77,6 +98,34 @@ function App() {
           index={index}
         />
         <Routes>
+          <Route
+            path="/favourites"
+            element={
+              <div className="film-container">
+                <Pagination
+                  page={page}
+                  setPage={setPage}
+                  setIndex={setIndex}
+                  index={index}
+                />
+                <div className="movies">
+                  {favourites.map((fav) => {
+                    return (
+                      <Film
+                        film={fav}
+                        filmId={filmId}
+                        setFilmId={setFilmId}
+                        index={index}
+                        setIndex={setIndex}
+                        fav={favor}
+                        removeFavouriteMovie={removeFavouriteMovie}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            }
+          />
           <Route
             path="/moviesApp-React"
             element={
@@ -96,7 +145,7 @@ function App() {
                         setFilmId={setFilmId}
                         index={index}
                         setIndex={setIndex}
-                        isOpenable={true}
+                        handleFavouritesClick={addFavouritesMovie}
                       />
                     );
                   })}

@@ -41,14 +41,13 @@ body {
 .movies {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-
+  flex: 1 1 1 1;
   padding: 20px;
 }
 
 .movie {
   width: 240px;
-  margin: 10px;
+  margin: 5px 25px;
   position: relative;
 }
 
@@ -84,6 +83,8 @@ body {
 
 .movie__info {
   padding: 10px 0px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .movie__title {
@@ -208,6 +209,8 @@ body {
   padding: 50px;
   width: 34vw;
   font-size: 20px;
+  height: 100%;
+  position: relative;
 }
 .description p {
   margin-bottom: 50px;
@@ -227,4 +230,45 @@ body {
   justify-content: space-between;
   display: flex;
   flex-direction: row;
+}
+.back__button {
+  background-color: rgb(248, 244, 237);
+  color: black;
+  width: 140px;
+  height: 50px;
+  font-size: larger;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  border-radius: 25px;
+  border: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transition: background 0.2s ease;
+}
+.back__button:hover {
+  background-color: #ffd80e;
+  cursor: pointer;
+}
+.button__holder {
+  display: flex;
+  justify-content: end;
+}
+.back__button_a {
+  padding: 30px;
+  color: black;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+}
+.favourites svg {
+  min-width: 30px;
+  transition: fill 0.2s ease;
+}
+.favourites svg:hover {
+  fill: #ffd80e;
+  cursor: pointer;
+}
+.favourite {
+  fill: #ffd80e;
 }
