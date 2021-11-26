@@ -96,6 +96,7 @@ function App() {
                         setFilmId={setFilmId}
                         index={index}
                         setIndex={setIndex}
+                        isOpenable={true}
                       />
                     );
                   })}

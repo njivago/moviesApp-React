@@ -11,6 +11,15 @@ const Film = (film) => {
   if (film.film.nameEn) nameEn = film.film.nameEn;
   else nameEn = film.film.nameOriginal;
 
+  const infoEvent = () => {
+    film.setFilmId(film.film.filmId);
+    film.setIndex(film.index + 1);
+  };
+  let event;
+  if (film.isOpenable) {
+    event = infoEvent;
+  } else event = '';
+
   const getClassByRate = (vote) => {
     if (vote >= 7) {
       return RATE_CLASS + 'green';
@@ -23,13 +32,7 @@ const Film = (film) => {
 
   return (
     <div className="movie">
-      <Link
-        to="/moviesApp-React/aboutFilm"
-        onClick={(e) => {
-          film.setFilmId(film.film.filmId);
-          film.setIndex(film.index + 1);
-        }}
-      >
+      <Link to="/moviesApp-React/aboutFilm" onClick={event}>
         <div className="movie__cover-inner">
           <img
             src={film.film.posterUrlPreview}
