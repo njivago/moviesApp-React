@@ -41,14 +41,13 @@ body {
 .movies {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-
+  flex: 1 1 1 1;
   padding: 20px;
 }
 
 .movie {
   width: 240px;
-  margin: 10px;
+  margin: 5px 25px;
   position: relative;
 }
 
@@ -73,7 +72,10 @@ body {
   height: 100%;
   z-index: 1;
 }
-
+.title__en {
+  font-size: 20px;
+  color: #ffd80e;
+}
 .movie__cover--darkened:hover {
   background-color: grey;
   cursor: pointer;
@@ -81,6 +83,8 @@ body {
 
 .movie__info {
   padding: 10px 0px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .movie__title {
@@ -187,4 +191,84 @@ body {
 .active {
   font-weight: bold;
   color: #ffd80e;
+}
+.container__info {
+  margin: 40px auto;
+  display: flex;
+  background-color: #34323f;
+  padding: 40px;
+  border-radius: 50px;
+  width: fit-content;
+  transition: box-shadow 0.2s ease;
+}
+.container__info:hover {
+  box-shadow: 0px 0px 27px 10px rgba(112, 112, 112, 0.2);
+}
+.description {
+  color: white;
+  padding: 50px;
+  width: 34vw;
+  font-size: 20px;
+  height: 100%;
+  position: relative;
+}
+.description p {
+  margin-bottom: 50px;
+}
+.slogan {
+  color: #ffd80e;
+  margin-bottom: 15px;
+}
+.desc {
+  font-size: 16px;
+  color: wheat;
+  margin-bottom: 20px;
+}
+.propert {
+  color: #ffd80e;
+  font-size: 20px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+}
+.back__button {
+  background-color: rgb(248, 244, 237);
+  color: black;
+  width: 140px;
+  height: 50px;
+  font-size: larger;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  border-radius: 25px;
+  border: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transition: background 0.2s ease;
+}
+.back__button:hover {
+  background-color: #ffd80e;
+  cursor: pointer;
+}
+.button__holder {
+  display: flex;
+  justify-content: end;
+}
+.back__button_a {
+  padding: 30px;
+  color: black;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+}
+.favourites svg {
+  min-width: 30px;
+  transition: fill 0.2s ease;
+}
+.favourites svg:hover {
+  fill: #ffd80e;
+  cursor: pointer;
+}
+.favourite {
+  fill: #ffd80e;
 }
